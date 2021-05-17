@@ -26,5 +26,24 @@ namespace TeduShop.Web.Controllers
 
             return View();
         }
+
+        //Không thể gọi trực tiếp index/footer đc mà chỉ đc nhúng
+        [ChildActionOnly]
+        public ActionResult Footer()
+        {
+            return PartialView();
+        }
+
+        [ChildActionOnly]
+        public ActionResult Header()
+        {
+            return PartialView();
+        }
+
+        [ChildActionOnly]
+        public ActionResult Category()
+        {
+            return PartialView();
+        }
     }
 }
