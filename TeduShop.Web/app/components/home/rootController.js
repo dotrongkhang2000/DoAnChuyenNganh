@@ -11,7 +11,7 @@
         $scope.authentication = authData.authenticationData;
 
         //Check status user
-        authenticationService.validateRequest();
+        //authenticationService.validateRequest();
 
     }])
 

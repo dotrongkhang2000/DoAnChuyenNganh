@@ -11,6 +11,7 @@ namespace TeduShop.Data.Repositories
     {
         public SlideRepository(IDbFactory dbFactory) : base(dbFactory)
         {
+
         }
     }
 }

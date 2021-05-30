@@ -28,8 +28,8 @@
 
             var user = new ApplicationUser()
             {
-                UserName = "khangdo",
-                Email = "khangdo2000@gmail.com",
+                UserName = "khangdo2000",
+                Email = "khangdo2@gmail.com",
                 EmailConfirmed = true,
                 BirthDay = DateTime.Now,
                 FullName = "Technology Education"

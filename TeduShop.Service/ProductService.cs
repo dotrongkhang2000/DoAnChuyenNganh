@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using TeduShop.Common;
 using TeduShop.Data.Infrastructure;
 using TeduShop.Data.Repositories;
@@ -17,6 +18,12 @@ namespace TeduShop.Service
         IEnumerable<Product> GetAll();
 
         IEnumerable<Product> GetAll(string keyword);
+
+        IEnumerable<Product> GetLastest(int top);
+
+        IEnumerable<Product> GetHotProduct(int top);
+
+        IEnumerable<Product> GetListProductByCategoryIdPaging(int categoryID, int page, int pageSize, out int totalRow);
 
         Product GetById(int id);
 
@@ -90,6 +97,26 @@ namespace TeduShop.Service
         {
             return _productRepository.GetSingleById(id);
         }
+
+        public IEnumerable<Product> GetHotProduct(int top)
+        {
+            //Lay tat ca san pham da ban va ngay dang som nhat theo top
+            return _productRepository.GetMulti(x => x.Status).OrderByDescending(x => x.CreatedDate).Take(top);
+        }
+
+        public IEnumerable<Product> GetLastest(int top)
+        {
+            return _productRepository.GetMulti(x => x.Status && x.HomeFlag == true  ).OrderByDescending(x => x.CreatedDate).Take(top);
+        }
+
+        public IEnumerable<Product> GetListProductByCategoryIdPaging(int categoryID, int page, int pageSize, out int totalRow)
+        {
+            var query = _productRepository.GetMulti( x => x.Status && x.CategoryID == categoryID);
+
+            totalRow = query.Count();
+            //Lấy số trong theo pageSize nếu page=1 và pageSize = 20=> lấy từ 0->20
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
+        }   
 
         public void Save()
         {

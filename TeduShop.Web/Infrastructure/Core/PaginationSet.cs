@@ -15,6 +15,7 @@ namespace TeduShop.Web.Infrastructure.Core
             }
         }
 
+        public int MaxPage { get; set; }
         public int TotalPages { set; get; }
         public int TotalCount { set; get; }
         public IEnumerable<T> Items { set; get; }
