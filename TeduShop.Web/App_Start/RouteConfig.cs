@@ -9,6 +9,8 @@ namespace TeduShop.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapMvcAttributeRoutes();
+
             routes.MapRoute(
                 name: "Admin",
                 url: "admin/{action}/{id}",
@@ -53,6 +55,14 @@ namespace TeduShop.Web
                 defaults: new { controller = "Product", action = "Detail", id = UrlParameter.Optional },
                 namespaces: new string[] { "TeduShop.Web.Controllers" }
             );
+
+            routes.MapRoute(
+                name: "Product Search",
+                url: "Product/{action}/{id}",
+                defaults: new { controller = "Product", action = "Search", id = UrlParameter.Optional },
+                namespaces: new string[] { "TeduShop.Web.Controllers" }
+            );
+
 
             routes.MapRoute(
                 name: "Default",

@@ -23,7 +23,11 @@ namespace TeduShop.Service
 
         IEnumerable<Product> GetHotProduct(int top);
 
-        IEnumerable<Product> GetListProductByCategoryIdPaging(int categoryID, int page, int pageSize, out int totalRow);
+        IEnumerable<Product> GetListProductByCategoryIdPaging(int categoryID, int page, int pageSize, out int totalRow, string sort);
+
+        IEnumerable<Product> Search(string keyword , int page, int pageSize, out int totalRow,string sort);
+
+        IEnumerable<string> GetListProductByName(string name);
 
         Product GetById(int id);
 
@@ -109,18 +113,64 @@ namespace TeduShop.Service
             return _productRepository.GetMulti(x => x.Status && x.HomeFlag == true  ).OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
-        public IEnumerable<Product> GetListProductByCategoryIdPaging(int categoryID, int page, int pageSize, out int totalRow)
+        public IEnumerable<Product> GetListProductByCategoryIdPaging(int categoryID, int page, int pageSize, out int totalRow, string sort)
         {
             var query = _productRepository.GetMulti( x => x.Status && x.CategoryID == categoryID);
+
+            switch (sort)
+            {
+                case "popular":
+                    query = query.OrderByDescending(x => x.ViewCount);
+                    break;
+                case "discount":
+                    query = query.OrderByDescending(x => x.PromotionPrice.HasValue);
+                    break;
+                case "price":
+                    query = query.OrderBy(x => x.Price);
+                    break;
+                default:
+                    query = query.OrderByDescending(x => x.CreatedDate);
+                    break;
+            }
 
             totalRow = query.Count();
             //Lấy số trong theo pageSize nếu page=1 và pageSize = 20=> lấy từ 0->20
             return query.Skip((page - 1) * pageSize).Take(pageSize);
-        }   
+        }
+
+        public IEnumerable<string> GetListProductByName(string name)
+        {
+            return _productRepository.GetMulti(x => x.Status && x.Name.Contains(name)).Select(x=>x.Name);
+        }
 
         public void Save()
         {
             _unitOfWork.Commit();
+        }
+
+        public IEnumerable<Product> Search(string keyword, int page, int pageSize, out int totalRow, string sort)
+        {
+            var query = _productRepository.GetMulti(x => x.Status && x.Name.Contains(keyword));
+
+            switch (sort)
+            {
+                case "popular":
+                    query = query.OrderByDescending(x => x.ViewCount);
+                    break;
+                case "discount":
+                    query = query.OrderByDescending(x => x.PromotionPrice.HasValue);
+                    break;
+                case "price":
+                    query = query.OrderBy(x => x.Price);
+                    break;
+                default:
+                    query = query.OrderByDescending(x => x.CreatedDate);
+                    break;
+            }
+
+            totalRow = query.Count();
+            //Lấy số trong theo pageSize nếu page=1 và pageSize = 20=> lấy từ 0->20
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         public void Update(Product Product)
