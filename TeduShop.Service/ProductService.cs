@@ -27,6 +27,9 @@ namespace TeduShop.Service
 
         IEnumerable<Product> Search(string keyword , int page, int pageSize, out int totalRow,string sort);
 
+        //Lấy sản phẩm liên quan tới 1 sp
+        IEnumerable<Product> GetRelatedProduct(int id, int top);
+
         IEnumerable<string> GetListProductByName(string name);
 
         Product GetById(int id);
@@ -141,6 +144,12 @@ namespace TeduShop.Service
         public IEnumerable<string> GetListProductByName(string name)
         {
             return _productRepository.GetMulti(x => x.Status && x.Name.Contains(name)).Select(x=>x.Name);
+        }
+
+        public IEnumerable<Product> GetRelatedProduct(int id, int top)
+        {
+            var product = _productRepository.GetSingleById(id);
+            return _productRepository.GetMulti(x => x.Status && x.ID != id && x.CategoryID == product.CategoryID).OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
         public void Save()

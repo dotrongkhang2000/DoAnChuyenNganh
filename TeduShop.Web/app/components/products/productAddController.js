@@ -22,6 +22,8 @@
 
 
         function AddProduct() {
+            //change to string and put to database
+            $scope.product.MoreImages = JSON.stringify($scope.moreImages);
             apiService.post('api/product/create', $scope.product,
                 function (result) {
                     notificationService.displaySuccess(result.data.Name + ' đã được thêm mới.');
