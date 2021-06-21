@@ -9,6 +9,9 @@ namespace TeduShop.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //Register Captcha must not be roundter
+            routes.IgnoreRoute("{*botdetect}", new { botdetect = @"(.*)BotDetectCaptcha\.ashx" });
+
             routes.MapMvcAttributeRoutes();
 
             routes.MapRoute(
@@ -31,6 +34,18 @@ namespace TeduShop.Web
                     controller = "Account", 
                     action = "Login", 
                     id = UrlParameter.Optional 
+                },
+                namespaces: new string[] { "TeduShop.Web.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "Register",
+                url: "Account/{action}/{id}",
+                defaults: new
+                {
+                    controller = "Account",
+                    action = "Register",
+                    id = UrlParameter.Optional
                 },
                 namespaces: new string[] { "TeduShop.Web.Controllers" }
             );

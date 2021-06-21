@@ -20,6 +20,7 @@ namespace TeduShop.Web.Controllers
             _productService = productService;
         }
 
+        [OutputCache(Duration = 60, Location = System.Web.UI.OutputCacheLocation.Server)]
         public ActionResult Index()
         {
             var slideModel = _commonService.GetSlides();
@@ -57,7 +58,9 @@ namespace TeduShop.Web.Controllers
         }
 
         //Không thể gọi trực tiếp index/footer đc mà chỉ đc nhúng
+        //Output Cache giúp lưu dữ liệu trên server/ client giúp giảm lượng tải database
         [ChildActionOnly]
+        [OutputCache(Duration =3600)]
         public ActionResult Footer()
         {
             var footerModel = _commonService.GetFooter();
@@ -72,6 +75,7 @@ namespace TeduShop.Web.Controllers
         }
 
         [ChildActionOnly]
+        [OutputCache(Duration = 3600)]
         public ActionResult Category()
         {
             var model = _productCategoryServiec.GetAll();
