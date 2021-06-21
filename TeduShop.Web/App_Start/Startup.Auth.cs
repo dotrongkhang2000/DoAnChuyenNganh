@@ -27,6 +27,8 @@ namespace TeduShop.Web.App_Start
             
             //Owin viet tat cua Open Web Interface for .NET la mot co che doc lap ko phu thuoc vao app hay data
             app.CreatePerOwinContext<UserManager<ApplicationUser>>(CreateManager);
+
+            //Config authen token for addmin
             app.UseOAuthAuthorizationServer(new OAuthAuthorizationServerOptions
             {
                 TokenEndpointPath = new PathString("/oauth/token"),
@@ -36,6 +38,22 @@ namespace TeduShop.Web.App_Start
 
             });
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
+
+            //Config the sign in cookie in front-end
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
+                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
+                LoginPath = new PathString("/Account/Login"),
+                Provider = new CookieAuthenticationProvider
+                {
+                    // Enables the application to validate the security stamp when the user logs in.
+                    // This is a security feature which is used when you change a password or add an external login to your account.  
+                    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
+                        validateInterval: TimeSpan.FromMinutes(30),
+                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
+                }
+            });
+            app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Uncomment the following lines to enable logging in with third party login providers
             //app.UseMicrosoftAccountAuthentication(
