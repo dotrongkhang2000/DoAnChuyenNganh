@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using TeduShop.Data.Infrastructure;
 using TeduShop.Model.Models;
 using System.Linq;
@@ -25,7 +27,7 @@ namespace TeduShop.Data.Repositories
                         select p;
             totalRow = query.Count();
 
-            return query.OrderByDescending(x => x.CreatedDate).Skip((page - 1) * pageSize).Take(pageSize);
+            return query.OrderByDescending(x=>x.CreatedDate).Skip((page - 1) * pageSize).Take(pageSize);
         }
     }
 }

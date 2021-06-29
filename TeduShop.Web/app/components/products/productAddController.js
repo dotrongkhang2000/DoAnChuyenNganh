@@ -22,8 +22,8 @@
 
 
         function AddProduct() {
-            //change to string and put to database
-            $scope.product.MoreImages = JSON.stringify($scope.moreImages);
+
+            $scope.product.MoreImages = JSON.stringify($scope.moreImages)
             apiService.post('api/product/create', $scope.product,
                 function (result) {
                     notificationService.displaySuccess(result.data.Name + ' đã được thêm mới.');
@@ -50,12 +50,14 @@
         }
 
         $scope.moreImages = [];
+
         $scope.ChooseMoreImage = function () {
             var finder = new CKFinder();
             finder.selectActionFunction = function (fileUrl) {
                 $scope.$apply(function () {
                     $scope.moreImages.push(fileUrl);
                 })
+             
             }
             finder.popup();
         }

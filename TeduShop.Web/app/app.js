@@ -3,8 +3,8 @@
 (function () {
     angular.module('tedushop',
         ['tedushop.products',
-            'tedushop.product_categories',
-            'tedushop.common'])
+         'tedushop.product_categories',
+         'tedushop.common'])
         .config(config)
         .config(configAuthentication);
 
@@ -15,16 +15,15 @@
             .state('base', {
                 url: '',
                 templateUrl: '/app/shared/views/baseView.html',
-                abstract: true,
-            })
-            .state('login', {
-                url: '/login',
-                templateUrl: '/app/components/login/loginView.html',
-                controller: 'loginController',
+                abstract: true
+            }).state('login', {
+                url: "/login",
+                templateUrl: "/app/components/login/loginView.html",
+                controller: "loginController"
             })
             .state('home', {
                 url: "/admin",
-                parent: "base",
+                parent: 'base',
                 templateUrl: "/app/components/home/homeView.html",
                 controller: "homeController"
             });
@@ -32,11 +31,10 @@
     }
 
     function configAuthentication($httpProvider) {
-        //interceptors: la noi quan tri viec tuong tac giua client va server
         $httpProvider.interceptors.push(function ($q, $location) {
             return {
                 request: function (config) {
-                    // dung thi tra ve config
+
                     return config;
                 },
                 requestError: function (rejection) {

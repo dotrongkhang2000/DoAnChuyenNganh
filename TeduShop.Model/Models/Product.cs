@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Linq;
@@ -33,6 +34,7 @@ namespace TeduShop.Model.Models
         public decimal Price { set; get; }
 
         public decimal? PromotionPrice { set; get; }
+
         public int? Warranty { set; get; }
 
         [MaxLength(500)]

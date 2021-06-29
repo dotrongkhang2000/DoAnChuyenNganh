@@ -89,7 +89,7 @@ namespace TeduShop.Web.Api
         [Route("create")]
         [HttpPost]
         [AllowAnonymous]
-        public HttpResponseMessage Create(HttpRequestMessage request, ProductViewModel productCategoryVm)
+        public HttpResponseMessage Create(HttpRequestMessage request, ProductViewModel productViewModel)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -101,9 +101,9 @@ namespace TeduShop.Web.Api
                 else
                 {
                     var newProduct = new Product();
-                    newProduct.UpdateProduct(productCategoryVm);
+                    newProduct.UpdateProduct(productViewModel);
                     newProduct.CreatedDate = DateTime.Now;
-                    newProduct.UpdatedBy = User.Identity.Name;
+                    newProduct.CreatedBy = User.Identity.Name;
                     _productService.Add(newProduct);
                     _productService.Save();
 
@@ -134,7 +134,6 @@ namespace TeduShop.Web.Api
                     dbProduct.UpdateProduct(productVm);
                     dbProduct.UpdatedDate = DateTime.Now;
                     dbProduct.UpdatedBy = User.Identity.Name;
-
                     _productService.Update(dbProduct);
                     _productService.Save();
 

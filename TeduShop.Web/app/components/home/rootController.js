@@ -1,20 +1,15 @@
-﻿//root is controller main so all params in here is params for all
-(function (app) {
+﻿(function (app) {
+    app.controller('rootController', rootController);
 
-    app.controller('rootController', ['$scope', '$state', 'authData', 'authenticationService', 'loginService', function rootController($scope, $state, authData, authenticationService, loginService) {
-        $scope.loguot = function () {
+    rootController.$inject = ['$state', 'authData', 'loginService', '$scope', 'authenticationService'];
+
+    function rootController($state, authData, loginService, $scope, authenticationService) {
+        $scope.logOut = function () {
             loginService.logOut();
             $state.go('login');
         }
-
-        //Take info user
         $scope.authentication = authData.authenticationData;
 
-        //Check status user
         //authenticationService.validateRequest();
-
-    }])
-
-
-
-})(angular.module('tedushop'))
+    }
+})(angular.module('tedushop'));

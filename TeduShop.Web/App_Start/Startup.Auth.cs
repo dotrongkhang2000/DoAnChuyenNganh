@@ -22,13 +22,11 @@ namespace TeduShop.Web.App_Start
         {
             // Configure the db context, user manager and signin manager to use a single instance per request
             app.CreatePerOwinContext(TeduShopDbContext.Create);
+
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
-            
-            //Owin viet tat cua Open Web Interface for .NET la mot co che doc lap ko phu thuoc vao app hay data
             app.CreatePerOwinContext<UserManager<ApplicationUser>>(CreateManager);
 
-            //Config authen token for addmin
             app.UseOAuthAuthorizationServer(new OAuthAuthorizationServerOptions
             {
                 TokenEndpointPath = new PathString("/oauth/token"),
@@ -39,11 +37,11 @@ namespace TeduShop.Web.App_Start
             });
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 
-            //Config the sign in cookie in front-end
+            // Configure the sign in cookie
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/Account/Login"),
+                LoginPath = new PathString("/dang-nhap.html"),
                 Provider = new CookieAuthenticationProvider
                 {
                     // Enables the application to validate the security stamp when the user logs in.
@@ -74,7 +72,6 @@ namespace TeduShop.Web.App_Start
             //    ClientSecret = ""
             //});
         }
-
         public class AuthorizationServerProvider : OAuthAuthorizationServerProvider
         {
             public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
@@ -89,7 +86,6 @@ namespace TeduShop.Web.App_Start
 
                 context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { allowedOrigin });
 
-                //Tao UserManager de tim kiem
                 UserManager<ApplicationUser> userManager = context.OwinContext.GetUserManager<UserManager<ApplicationUser>>();
                 ApplicationUser user;
                 try
@@ -119,7 +115,7 @@ namespace TeduShop.Web.App_Start
         }
 
 
-        //Tao userManager de tuong tac security
+
         private static UserManager<ApplicationUser> CreateManager(IdentityFactoryOptions<UserManager<ApplicationUser>> options, IOwinContext context)
         {
             var userStore = new UserStore<ApplicationUser>(context.Get<TeduShopDbContext>());
@@ -127,4 +123,6 @@ namespace TeduShop.Web.App_Start
             return owinManager;
         }
     }
+
+ 
 }

@@ -1,7 +1,5 @@
 ﻿(function (app) {
     'use strict';
-
-    // $q la mot service giup thuc hien lenh theo 1 tuan tu truoc sau
     app.service('authenticationService', ['$http', '$q', '$window',
         function ($http, $q, $window) {
             var tokenInfo;

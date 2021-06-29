@@ -13,17 +13,17 @@ namespace TeduShop.Web.Api
     [Authorize]
     public class HomeController : ApiControllerBase
     {
-        IErrorService _errorrService;
+        IErrorService _errorService;
         public HomeController(IErrorService errorService) : base(errorService)
         {
-            this._errorrService = errorService;
+            this._errorService = errorService;
         }
 
         [HttpGet]
         [Route("TestMethod")]
         public string TestMethod()
         {
-            return "Welcome to KhangShop!";
+            return "Hello, TEDU Member. ";
         }
     }
 }
