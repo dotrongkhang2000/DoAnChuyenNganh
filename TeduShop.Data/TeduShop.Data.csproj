@@ -84,6 +84,10 @@
     <Compile Include="Migrations\202107050706199_update-agian.Designer.cs">
       <DependentUpon>202107050706199_update-agian.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107050748306_addCustomerI.cs" />
+    <Compile Include="Migrations\202107050748306_addCustomerI.Designer.cs">
+      <DependentUpon>202107050748306_addCustomerI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ContactDetailRepository.cs" />
@@ -137,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107050706199_update-agian.resx">
       <DependentUpon>202107050706199_update-agian.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107050748306_addCustomerI.resx">
+      <DependentUpon>202107050748306_addCustomerI.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

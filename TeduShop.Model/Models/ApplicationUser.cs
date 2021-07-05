@@ -24,5 +24,7 @@ namespace TeduShop.Model.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public virtual IEquatable<Order> Orders { set; get; }
     }
 }
