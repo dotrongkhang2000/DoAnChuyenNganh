@@ -88,8 +88,24 @@
     <Compile Include="Migrations\202107050748306_addCustomerI.Designer.cs">
       <DependentUpon>202107050748306_addCustomerI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107060200220_UpdateIdentiy.cs" />
+    <Compile Include="Migrations\202107060200220_UpdateIdentiy.Designer.cs">
+      <DependentUpon>202107060200220_UpdateIdentiy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107060252228_AddGroupUser.cs" />
+    <Compile Include="Migrations\202107060252228_AddGroupUser.Designer.cs">
+      <DependentUpon>202107060252228_AddGroupUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107060836156_ad.cs" />
+    <Compile Include="Migrations\202107060836156_ad.Designer.cs">
+      <DependentUpon>202107060836156_ad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ApplicationGroupReponsitory.cs" />
+    <Compile Include="Repositories\ApplicationRoleGroupReponsitory.cs" />
+    <Compile Include="Repositories\ApplicationRoleRepository.cs" />
+    <Compile Include="Repositories\ApplicationUserGroupRepository.cs" />
     <Compile Include="Repositories\ContactDetailRepository.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
     <Compile Include="Repositories\FeedbackRepository.cs" />
@@ -144,6 +160,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107050748306_addCustomerI.resx">
       <DependentUpon>202107050748306_addCustomerI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107060200220_UpdateIdentiy.resx">
+      <DependentUpon>202107060200220_UpdateIdentiy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107060252228_AddGroupUser.resx">
+      <DependentUpon>202107060252228_AddGroupUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107060836156_ad.resx">
+      <DependentUpon>202107060836156_ad.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

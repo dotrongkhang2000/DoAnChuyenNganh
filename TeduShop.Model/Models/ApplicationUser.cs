@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -25,6 +26,6 @@ namespace TeduShop.Model.Models
             return userIdentity;
         }
 
-        public virtual IEquatable<Order> Orders { set; get; }
+        public virtual IEnumerable<Order> Orders { set; get; }
     }
 }
