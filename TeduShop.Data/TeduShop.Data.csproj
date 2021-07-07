@@ -100,6 +100,14 @@
     <Compile Include="Migrations\202107060836156_ad.Designer.cs">
       <DependentUpon>202107060836156_ad.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107061158078_ChangeOrderDetail.cs" />
+    <Compile Include="Migrations\202107061158078_ChangeOrderDetail.Designer.cs">
+      <DependentUpon>202107061158078_ChangeOrderDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107070206014_ThongKeDoanhThu.cs" />
+    <Compile Include="Migrations\202107070206014_ThongKeDoanhThu.Designer.cs">
+      <DependentUpon>202107070206014_ThongKeDoanhThu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationGroupReponsitory.cs" />
@@ -169,6 +177,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107060836156_ad.resx">
       <DependentUpon>202107060836156_ad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107061158078_ChangeOrderDetail.resx">
+      <DependentUpon>202107061158078_ChangeOrderDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107070206014_ThongKeDoanhThu.resx">
+      <DependentUpon>202107070206014_ThongKeDoanhThu.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
