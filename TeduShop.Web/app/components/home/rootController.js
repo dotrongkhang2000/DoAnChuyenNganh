@@ -8,6 +8,7 @@
             loginService.logOut();
             $state.go('login');
         }
+        authenticationService.init();
         $scope.authentication = authData.authenticationData;
 
         //authenticationService.validateRequest();

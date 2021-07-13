@@ -7,9 +7,9 @@
         return {
             scope: {
                 page: '@',
-                pagesCount: '@',
+                pagesCount: '@',//@ là scope chi doc
                 totalCount: '@',
-                searchFunc: '&',
+                searchFunc: '&',//& là scope co the them hàm
                 customPath: '@'
             },
             replace: true,
