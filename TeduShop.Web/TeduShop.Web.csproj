@@ -240,6 +240,7 @@
     </Compile>
     <Compile Include="Infrastructure\Core\ApiControllerBase.cs" />
     <Compile Include="Infrastructure\Core\PaginationSet.cs" />
+    <Compile Include="Infrastructure\Core\ServiceFactory.cs" />
     <Compile Include="Infrastructure\Extensions\EntityExtensions.cs" />
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
     <Compile Include="Models\ApplicationGroupViewModel.cs" />
@@ -308,7 +309,9 @@
     <Content Include="app\components\product_categories\productCategoryEditView.html" />
     <Content Include="app\components\product_categories\productCategoryListController.js" />
     <Content Include="app\components\product_categories\productCategoryListView.html" />
+    <Content Include="app\components\statistic\revenueUserController.js" />
     <Content Include="app\components\statistic\revenueStatisticController.js" />
+    <Content Include="app\components\statistic\revenueUserView.html" />
     <Content Include="app\components\statistic\revenueStatisticView.html" />
     <Content Include="app\components\statistic\statistic.module.js" />
     <Content Include="app\shared\directives\pagerDirective.html" />
@@ -4990,6 +4993,7 @@
     <Folder Include="app\shared\footer\" />
     <Folder Include="app\shared\navigation\" />
     <Folder Include="Assets\admin\js\pages\" />
+    <Folder Include="Reports\" />
     <Folder Include="UploadedFiles\" />
     <Folder Include="Views\About\" />
     <Folder Include="Views\Post\" />

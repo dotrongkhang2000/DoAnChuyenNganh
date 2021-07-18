@@ -14,5 +14,8 @@ namespace TeduShop.Common
 
         public const string SessionCart = "SessionCart";
 
+        public const string Administrator = "Admin";
+
+        public const string Staff = "Staff";
     }
 }
