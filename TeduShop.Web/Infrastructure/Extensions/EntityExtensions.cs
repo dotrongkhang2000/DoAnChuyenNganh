@@ -99,6 +99,17 @@ namespace TeduShop.Web.Infrastructure.Extensions
             product.OriginalPrice = productVm.OriginalPrice;
         }
 
+        public static void UpdateSlide(this Slide slide, SlideViewModel slideViewModel)
+        {
+            slide.ID = slideViewModel.ID;
+            slide.Name = slideViewModel.Name;
+            slide.Description = slideViewModel.Description;
+            slide.Content = slideViewModel.Content;
+            slide.Image = slideViewModel.Image;
+            slide.Url = slideViewModel.Url;
+            slide.Status = slideViewModel.Status;
+        }
+
         public static void UpdateFeedback(this Feedback feedback,FeedbackViewModel feedbackVm)
         {
             feedback.Name = feedbackVm.Name;

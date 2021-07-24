@@ -33,10 +33,13 @@ namespace TeduShop.Web.Controllers
             var homeViewModel = new HomeViewModel();
             homeViewModel.Slides = slideView;
 
+            var allProductModel = _productService.GetAll();
             var lastestProductModel = _productService.GetLastest(3);
             var topSaleProductModel = _productService.GetHotProduct(3);
+            var allProductViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(allProductModel);
             var lastestProductViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(lastestProductModel);
             var topSaleProductViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(topSaleProductModel);
+            homeViewModel.AllProducts = allProductViewModel;
             homeViewModel.LastestProducts = lastestProductViewModel;
             homeViewModel.TopSaleProducts = topSaleProductViewModel;
             return View(homeViewModel);
